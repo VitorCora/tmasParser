@@ -3,8 +3,15 @@ import json
 import sys
 
 def load_json(filename):
-    with open(filename, 'r') as file:
-        return json.load(file)
+    try:
+        with open(filename, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' was not found.")
+        sys.exit(1)
+    except json.JSONDecodeError:
+        print(f"Error: The file '{filename}' is not a valid JSON file.")
+        sys.exit(1)
 
 def check_thresholds(data, args):
     findings = []
@@ -55,7 +62,7 @@ def main():
     parser.add_argument('--low-unmitigated', type=bool, default=False, help='Fail on unmitigated low vulnerabilities')
     parser.add_argument('--malware', type=bool, default=False, help='Fail on malware detection')
     parser.add_argument('--secrets', type=bool, default=False, help='Fail on unmitigated secrets')
-    parser.add_argument('--input', type=str, default='tmasParser_output.json', help='Input JSON file')
+    parser.add_argument('--input', type=str, required=True, help='Input JSON file')
 
     args = parser.parse_args()
 
