@@ -1,5 +1,4 @@
 import json
-import sys
 import argparse
 
 def parse_json(file_path):
@@ -82,15 +81,13 @@ def parse_json(file_path):
         "secrets": unmitigated_findings_count
     }
     
-    # Print the output as JSON
-    print(json.dumps(output, indent=4))
+    # Write the output to a JSON file
+    with open('tmasParser_output.json', 'w') as outfile:
+        json.dump(output, outfile, indent=4)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Parse security-related JSON data.')
-    parser.add_argument('-tmas', metavar='file', type=str, help='Path to the JSON file')
+    parser.add_argument('-tmas', metavar='file', type=str, required=True, help='Path to the JSON file')
     args = parser.parse_args()
 
-    if args.tmas:
-        parse_json(args.tmas)
-    else:
-        print("Usage: python [URL] -tmas <path_to_json_file>")
+    parse_json(args.tmas)
