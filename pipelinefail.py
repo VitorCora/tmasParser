@@ -17,34 +17,34 @@ def check_thresholds(data, args):
     findings = []
     thresholds_met = False
 
-    if args.critical and data['vulnerabilities']['critical']['count'] > 0:
+    if args.critical and data['vulnerabilities']['criticalCount'] > 0:
         findings.append('Critical vulnerabilities found')
         thresholds_met = True
-    if args.critical_unmitigated and data['vulnerabilities']['critical']['unmitigated'] > 0:
+    if args.critical_unmitigated and data['vulnerabilities']['critical-no-fix'] > 0:
         findings.append('Unmitigated critical vulnerabilities found')
         thresholds_met = True
-    if args.high and data['vulnerabilities']['high']['count'] > 0:
+    if args.high and data['vulnerabilities']['highCount'] > 0:
         findings.append('High vulnerabilities found')
         thresholds_met = True
-    if args.high_unmitigated and data['vulnerabilities']['high']['unmitigated'] > 0:
+    if args.high_unmitigated and data['vulnerabilities']['high-no-fix'] > 0:
         findings.append('Unmitigated high vulnerabilities found')
         thresholds_met = True
-    if args.medium and data['vulnerabilities']['medium']['count'] > 0:
+    if args.medium and data['vulnerabilities']['mediumCount'] > 0:
         findings.append('Medium vulnerabilities found')
         thresholds_met = True
-    if args.medium_unmitigated and data['vulnerabilities']['medium']['unmitigated'] > 0:
+    if args.medium_unmitigated and data['vulnerabilities']['medium-no-fix'] > 0:
         findings.append('Unmitigated medium vulnerabilities found')
         thresholds_met = True
-    if args.low and data['vulnerabilities']['low']['count'] > 0:
+    if args.low and data['vulnerabilities']['lowCount'] > 0:
         findings.append('Low vulnerabilities found')
         thresholds_met = True
-    if args.low_unmitigated and data['vulnerabilities']['low']['unmitigated'] > 0:
+    if args.low_unmitigated and data['vulnerabilities']['low-no-fix'] > 0:
         findings.append('Unmitigated low vulnerabilities found')
         thresholds_met = True
-    if args.malware and data['malware']['detected'] > 0:
+    if args.malware and data['malware'] > 0:
         findings.append('Malware detected')
         thresholds_met = True
-    if args.secrets and data['secrets']['unmitigated'] > 0:
+    if args.secrets and data['secrets'] > 0:
         findings.append('Unmitigated secrets found')
         thresholds_met = True
 
