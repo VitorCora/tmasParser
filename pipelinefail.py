@@ -3,9 +3,15 @@ import json
 import sys
 
 def load_json(filename):
-    # Load JSON data from the file
-    with open(filename, 'r') as file:
-        return json.load(file)
+    try:
+        with open(filename, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print("Error: The file '{}' was not found.".format(filename))
+        sys.exit(1)
+    except json.JSONDecodeError:
+        print("Error: The file '{}' is not a valid JSON file.".format(filename))
+        sys.exit(1)
 
 def check_thresholds(data, args):
     findings = []
@@ -72,7 +78,7 @@ def main():
     if thresholds_met:
         print("Thresholds met:")
         for finding in findings:
-            print(f"- {finding}")
+            print("- {}".format(finding))
         print("Failing the pipeline.")
         sys.exit(1)
     else:
