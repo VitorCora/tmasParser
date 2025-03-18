@@ -3,15 +3,9 @@ import json
 import sys
 
 def load_json(filename):
-    try:
-        with open(filename, 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        print(f"Error: The file '{filename}' was not found.")
-        sys.exit(1)
-    except json.JSONDecodeError:
-        print(f"Error: The file '{filename}' is not a valid JSON file.")
-        sys.exit(1)
+    # Load JSON data from the file
+    with open(filename, 'r') as file:
+        data = json.load(file)
 
 def check_thresholds(data, args):
     findings = []
