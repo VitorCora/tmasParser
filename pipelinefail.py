@@ -5,7 +5,7 @@ import sys
 def load_json(filename):
     # Load JSON data from the file
     with open(filename, 'r') as file:
-        data = json.load(file)
+        return json.load(file)
 
 def check_thresholds(data, args):
     findings = []
