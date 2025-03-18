@@ -1,5 +1,11 @@
 # How to run it
 
+## While running TMAS / Trend Micro Shift-Left 
+
+./tmas scan {artifact} -Flags >> tmas_output.json
+
+## After Running Artifact Scanner
+
 pip install -r requirements.txt
 python tmasparser.py -tmas tmas_output.json
 
